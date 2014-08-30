@@ -146,18 +146,19 @@ class AboutRegularExpressions < Neo::Koan
   # THINK ABOUT IT:
   #
   # Explain the difference between a character class ([...]) and alternation (|).
+  # Alternation will search to the right or left of the pipe, character class will search for the first matching character.
 
   # ------------------------------------------------------------------
 
   def test_scan_is_like_find_all
-    assert_equal __, "one two-three".scan(/\w+/)
+    assert_equal ["one", "two", "three"], "one two-three".scan(/\w+/)
   end
 
   def test_sub_is_like_find_and_replace
-    assert_equal __, "one two-three".sub(/(t\w*)/) { $1[0, 1] }
+    assert_equal "one t-three", "one two-three".sub(/(t\w*)/) { $1[0, 1] }
   end
 
   def test_gsub_is_like_find_and_replace_all
-    assert_equal __, "one two-three".gsub(/(t\w*)/) { $1[0, 1] }
+    assert_equal "one t-t", "one two-three".gsub(/(t\w*)/) { $1[0, 1] }
   end
 end
