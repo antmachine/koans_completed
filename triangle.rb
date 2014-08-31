@@ -15,15 +15,32 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
-  if(a == b && b == c)
-  	return :equilateral
-  elsif(a == b || b == c || a == c)
-  	return :isosceles
-  else
-  	return :scalene
-  end
+	if ( a <= 0 || b <= 0 || c <= 0 )
+		raise TriangleError, "Impossible triangle. One of the sides is less than 0 units."
+	end
+
+	s = (a + b + c) / 2.0
+	ok = (s - a) * (s - b) * (s - c) # This must be positive for a triangle to be drawn
+	
+	if (ok <= 0)
+		raise TriangleError, "Impossible triangle. The sides can't connect."
+	end
+
+	if ( a == b )
+		if ( a == c )
+			return :equilateral
+		end
+		return :isosceles
+	else
+		if ( a == c || b == c )
+			return :isosceles
+		end
+	end
+	return :scalene
 end
+
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
+
 end
