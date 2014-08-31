@@ -119,7 +119,8 @@ class AboutIteration < Neo::Koan
   #   # code to read 'file'
   #
   # At the end of the File.open in the first example it will close the file at the end of the operation.
-  # The second example will leave the file open for use still.
+  # The second example will leave the file still open for use.
+  # The open method will close the file when passed a block.
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
 
